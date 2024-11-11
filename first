@@ -1,0 +1,163 @@
+package Laboratory;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+import static Laboratory.fs.*;
+
+public class FirstT {
+    public static void printhL() {
+        System.out.println("Hello world!");
+    }
+
+
+    public static void operationWithRealNums(float num1, float num2, float num3) {
+        float max, min;
+        System.out.println("Среднее арифмитическое - " + (num1 + num2 + num3) / 3);
+        System.out.println("Произведение - " + num1 * num2 * num3);
+        max = Math.max(num1, Math.max(num2, num3));
+        min = Math.min(num1, Math.min(num2, num3));
+        if ((num1 < max) && (num1 > min)) {
+            System.out.println("Числа в порядке возрастания:" + min + " " + num1 + " " + max);
+        } else if ((num2 < max) && (num2 > min)) {
+            System.out.println("Числа в порядке возрастания: " + min + " " + num2 + " " + max);
+        } else if ((num3 < max) && (num3 > min)) {
+            System.out.println("Числа в порядке возрастания: " + min + num3 + max);
+        }
+        System.out.println("__________________________");
+    }
+
+    public static void operationWithRealNumsi(int num1, int num2, int num3) {
+        int max, min;
+        System.out.println("Среднее арифмитическое - " + (double) (num1 + num2 + num3) / 3);
+        System.out.println("Произведение - " + num1 * num2 * num3);
+        max = Math.max(num1, Math.max(num2, num3));
+        min = Math.min(num1, Math.min(num2, num3));
+        if ((num1 < max) && (num1 > min)) {
+            System.out.println("Числа в порядке возрастания:" + min + " " + num1 + " " + max);
+        } else if ((num2 < max) && (num2 > min)) {
+            System.out.println("Числа в порядке возрастания: " + min + " " + num2 + " " + max);
+        } else if ((num3 < max) && (num3 > min)) {
+            System.out.println("Числа в порядке возрастания: " + min + num3 + max);
+        }
+        System.out.println("__________________________");
+    }
+
+    public static void quadraticEquation(double a, double b, double c) {
+        double x, x1, x2;
+        double discrM;
+        if (a != 0) {
+            discrM = (b * b - 4 * a * c);
+            if (discrM > 0) {
+                System.out.println("Уравнение имеет два решения");
+                x1 = (-b + Math.sqrt(discrM) / (2 * a));
+                x2 = (-b + Math.sqrt(discrM) / (2 * a));
+                System.out.println("x1 = " + x1 + "\nx2 = " + x2);
+            } else if (discrM == 0) {
+                System.out.println("Уравнение имеет одно решение");
+                x = -b / (2 * a);
+                System.out.println("x = " + x);
+            } else System.out.println("Уравнение не имеет решений");
+        } else if (c != 0) {
+            System.out.println("Уравнение имеет одно решение: ");
+            x = c / b;
+            System.out.println("x = " + x);
+        } else {
+            System.out.println("Уравнение имеет одно решение");
+            System.out.println("x = 0");
+        }
+        System.out.println("__________________________");
+    }
+
+    public static void tabulationSin(double rangeL, double rangeH, double step) {
+        while (rangeL < rangeH) {
+            System.out.println("x = " + rangeL + " " + " " + "Значение sin(x) = " + Math.sin(rangeL));
+            rangeL += step;
+        }
+    }
+
+    public static String equation(double a, double b, double c, double d, double e, double f) {
+        if (((a == 0) && (b != 0) && ((d == 0) && (e != 0)))) {
+            return "y = " + c / b + "x - любое";
+        } else if (((a != 0) && (b == 0)) && ((d != 0) && (e == 0))) {
+            return "y - любое" + "x = " + f / d;
+        } else if (((a == 0) && (b == 0)) || ((d == 0) && (e == 0))) {
+            return "Система линейных уравнений имеет бесконечно много решений";
+        } else if (((a / d) == (b / e)) && ((a / d) != (c / f))) {
+            return "Система линейных уравнений не имеет решений";
+        } else {
+            double x = (c * e - b * f) / (a * e - b * d);
+            double y = (a * f - c * d) / (a * e - b * d);
+            return x + " " + y;
+        }
+    }
+
+    public static double rowTalyor(double x, double precision) {
+        double x1 = x;
+        double sum = 1;
+        int i = 1, num = 1;
+        while (x / num > precision) {
+            sum += (x / num);
+            i++;
+            num *= i;
+            x = x * x1;
+        }
+        return sum;
+    }
+
+    public static int numb() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Введите номер задания");
+        return scan.nextInt();
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {-1, 1,2,3,4};
+        arrayOutput(arr);
+        System.out.println("sum of all elem = " + tenth(arr));
+        System.out.println("All even are: " + evenElements(arr));
+        System.out.println("Count of elems in the [-2; 2]: " + intervals(arr, -2,2)  );
+        System.out.println("Is all positive: "+ positivElem(arr));
+        System.out.println("reversed: "+ Arrays.toString(reverseElem(arr)));
+    }
+
+    public static void main1(String[] args) {
+        switch (numb()) {
+            case (1):
+                FirstT.printhL();
+                break;
+            case (2):
+                operationWithRealNums(1, 1, 1);
+                operationWithRealNums(-11, -11, -11);
+                operationWithRealNums(1, 0, 1);
+                operationWithRealNums(1, 4, -37);
+                break;
+            case (3):
+                operationWithRealNumsi(1, 2, 5);
+                operationWithRealNumsi(1, 1, 1);
+                operationWithRealNumsi(1, 0, 1);
+                operationWithRealNumsi(-1, -100, 10);
+                break;
+            case (4):
+                quadraticEquation(4, -16, 10);
+                quadraticEquation(0, -1, 2);
+                quadraticEquation(1, 2, 1);
+                quadraticEquation(0, 1, 0);
+                quadraticEquation(0, -2, -1);
+                break;
+            case (5):
+//                tabulationSin(3.14 / 4, -1, 1);
+                tabulationSin(0, 2 * Math.PI, Math.PI/3 );
+                break;
+            case (6):
+                System.out.println(equation(1, 1, 6, 1, -1, 2));
+                break;
+            case (7):
+                System.out.println("Ответ: " + Math.E);
+                System.out.println("Ответ: " + rowTalyor(1, 0.00000000001));
+                System.out.println("Ответ: " + rowTalyor(1, 0.1));
+                System.out.println("Ответ: " + rowTalyor(1, 0.0001));
+                break;
+        }
+    }
+}
